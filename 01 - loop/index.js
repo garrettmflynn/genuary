@@ -10,7 +10,7 @@ const padding = 50
 const diameter = 15
 
 
-const frames = 2 * framerate 
+// const frames = 2 * framerate 
 
 
 function tri(t) {
@@ -51,7 +51,7 @@ let sketch = (p) => {
     window.onkeydown = (e) => {
        if (e.key === 'ArrowRight') moveColorRight()
          if (e.key === 'ArrowLeft') selectedColor = (selectedColor - 1) % colors.length
-         if (e.key === 's') p.saveGif('test.gif', frames, {units: 'frames', delay: 0})
+         if (e.key === 's') p.saveGif('test.gif', totalFrames, {units: 'frames', delay: 0})
     }
 
     const opacity = 175
@@ -63,7 +63,7 @@ let sketch = (p) => {
         [100, 0, 255, opacity], // Purple
     ]
 
-    const framesPerColor = frames / colors.length
+    const framesPerColor = (totalFrames / colors.length) /3
 
 
     const show = Array.from({length: Math.pow(nCirclesPerRow, 2)}).map((_, i) => Math.round(Math.random()) === 1)
