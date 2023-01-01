@@ -50,20 +50,21 @@ let sketch = (p) => {
 
     window.onkeydown = (e) => {
        if (e.key === 'ArrowRight') moveColorRight()
-         if (e.key === 'ArrowLeft') selectedColor = (selectedColor - 1) % colors.length
+        //  if (e.key === 'ArrowLeft') selectedColor = (selectedColor - 1) % colors.length
          if (e.key === 's') p.saveGif('test.gif', totalFrames, {units: 'frames', delay: 0})
     }
 
     const opacity = 175
     const colors = [
-        [255, 0, 100, opacity], // Red
-        [255, 100, 0, opacity], // Orange
+        [255,255,0, opacity], // Yellow
         [0, 255, 100, opacity], // Evergreen
         [0, 100, 255, opacity], // Blue
         [100, 0, 255, opacity], // Purple
+        [255, 0, 100, opacity], // Red
+        [255, 100, 0, opacity], // Orange
     ]
 
-    const framesPerColor = (totalFrames / colors.length) /3
+    const framesPerColor = (totalFrames / colors.length) 
 
 
     const show = Array.from({length: Math.pow(nCirclesPerRow, 2)}).map((_, i) => Math.round(Math.random()) === 1)
@@ -73,7 +74,6 @@ let sketch = (p) => {
     let framesPassed = 0
     p.draw = () => {
 
-        // if (totalFrames % framesPerColor === 0) moveColorRight() // Glitchy
         
         framesPassed++
 
@@ -108,6 +108,8 @@ let sketch = (p) => {
                     const nextColor = getNextColor()
                     const mapped = thisColor.map((v, i) => p.map(transitionPosition, 0, 1,v, nextColor[i])) 
                    p.fill(...mapped)
+
+                //    p.fill(...thisColor)
 
                     barheight = inOutSin(tri(timeLoop(totalFrames, i * totalFrames)) / 0.5) * thisSize;
 
